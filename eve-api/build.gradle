@@ -23,10 +23,12 @@ jar {
 repositories {
     maven { url "http://repo.spring.io/snapshot" }
     maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://dl.bintray.com/mgdelacroix/eve" }
 }
 
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.codehaus.groovy:groovy-all:2.3.4'
+    compile 'eve.auth:eve-auth:0.0.1'
 }
