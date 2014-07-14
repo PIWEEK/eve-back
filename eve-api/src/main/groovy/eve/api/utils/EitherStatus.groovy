@@ -1,0 +1,3 @@
+enum EitherStatus {
+    LEFT, RIGHT
+}
