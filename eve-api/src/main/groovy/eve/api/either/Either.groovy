@@ -1,15 +1,6 @@
 package eve.api.either
 
-abstract class Either {
-    Map data
- 
-    Either(Map data) {
-        this.data = data
-    }
-
-    String toString() {
-        "[${this.class.simpleName}]> ${this.data}"
-    }
+abstract class Either extends LikedHashMap {
 
     Boolean isLeft() {
         return this instanceof Left
