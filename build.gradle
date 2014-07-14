@@ -2,11 +2,11 @@ apply plugin: 'groovy'
 
 allprojects {
     repositories {
-        mavenCentral()
+        jcenter()
     }
     buildscript {
         repositories {
-            mavenCentral()
+            jcenter()
         }
     }
 }
