@@ -7,9 +7,15 @@ allprojects {
             mavenCentral()
         }
     }
+    dependencies {
+        compile 'org.codehaus.groovy:groovy-all:2.3.4'
+    }
 }
 
 apply plugin: 'groovy'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
