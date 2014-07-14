@@ -1,3 +1,14 @@
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    }
+}
+
 apply plugin: 'groovy'
 
 task wrapper(type: Wrapper) {

@@ -1,0 +1,3 @@
+rootProject.name = 'eve'
+
+include 'eve-persistence', 'eve-core', 'eve-api'
