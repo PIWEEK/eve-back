@@ -1,6 +1,7 @@
 package eve.api.utils
 
 class Either {
+
     EitherStatus status = EitherStatus.RIGHT
     Map data
  
@@ -12,7 +13,7 @@ class Either {
         either.status == EitherStatus.LEFT
     }
 
-    Either fmap(Either either, Closure... methods) {
+    Either bind(Either either, Closure... methods) {
         for (Closure method : methods) {
             if (either.isLeft()) {
                 break
@@ -22,4 +23,5 @@ class Either {
         }
         return either
     }
+
 }
