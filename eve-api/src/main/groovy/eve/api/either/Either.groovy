@@ -21,4 +21,8 @@ abstract class Either extends LinkedHashMap {
         return either
     }
 
+    Map getData() {
+        return this.findAll { k, v -> k != 'code' }
+    }
+
 }
