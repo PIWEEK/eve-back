@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.beans.factory.annotation.Autowired
 import javax.servlet.http.HttpServletResponse
+import javax.servlet.http.HttpServletRequest
 
 import static eve.api.either.Either.bind
 
@@ -24,10 +25,13 @@ class EventAdminController extends BaseController {
     final Right EMPTY = [:] as Right
 
     @Autowired EventApiService eventApiService
+    @Autowired AuthService authService
 
     @RequestMapping(value = '', method = RequestMethod.POST)
-    def create(@RequestBody EventCommand cmd, HttpServletResponse response) {
-        renderWithResponse response, bind(cmd.validate())
+    def create(@RequestBody EventCommand cmd, HttpServletRequest request, HttpServletResponse response) {
+        Right right = this.getTokenRightFromHeader(request) + cmd.asMap()
+
+        renderWithResponse response, bind(right, authService.&validateToken, eventApiService.&validateEventCommand)
     }
 
     @RequestMapping(value = '/{id}', method = RequestMethod.PUT)
