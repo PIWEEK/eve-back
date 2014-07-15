@@ -23,7 +23,7 @@ class AuthService {
     Either validateToken(Map data) {
         Map tokenData = this.statelessAuth.validateToken(data.token)
         if (tokenData) {
-            return (tokenData + [code: 200]) as Right
+            return (data + tokenData + [code: 200]) as Right
         } else {
             return [code: 401, error: 'Invalid token'] as Left
         }
