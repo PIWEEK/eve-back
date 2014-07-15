@@ -1,6 +1,6 @@
 package eve.api.either
 
-abstract class Either extends LikedHashMap {
+abstract class Either extends LinkedHashMap {
 
     Boolean isLeft() {
         return this instanceof Left
@@ -15,7 +15,7 @@ abstract class Either extends LikedHashMap {
             if (either.isLeft()) {
                 break
             } else {
-                either = method.call(either)
+                either = method.call(either.data)
             }
         }
         return either
