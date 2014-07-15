@@ -30,5 +30,6 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.codehaus.groovy:groovy-all:2.3.4'
+    compile project(':eve-core')
     compile 'eve.auth:eve-auth:0.0.1'
 }
