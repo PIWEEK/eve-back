@@ -30,17 +30,27 @@ class EventAdminController extends BaseController {
 
         renderWithResponse response, bind(right,
                                           authService.&validateToken,
-                                          eventApiService.&validateEventCommand)
+                                          eventApiService.&validateEventCommand,
+                                          eventApiService.&createEvent)
     }
 
     @RequestMapping(value = '/{id}', method = RequestMethod.PUT)
-    def update(@PathVariable Long id, @RequestBody EventCommand cmd, HttpServletResponse response) {
-        return [description: ("EVENT SHOW ${id}" as String)]
+    def update(@PathVariable Long id, @RequestBody EventCommand cmd, HttpServletRequest request, HttpServletResponse response) {
+        Right right = this.getTokenRightFromHeader(request) + cmd.asMap() + [id: id]
+
+        renderWithResponse response, bind(right,
+                                         authService.&validateToken,
+                                         eventApiService.&validateEventCommand,
+                                         eventApiService.&updateEvent)
     }
 
     @RequestMapping(value = '/{id}', method = RequestMethod.DELETE)
-    def delete(@PathVariable Long id, HttpServletResponse response) {
-        return [description: ("EVENT SHOW ${id}" as String)]
+    def delete(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response) {
+        Right right = this.getTokenRightFromHeader(request) + [id: id]
+
+        renderWithResponse response, bind(right,
+                                         authService.&validateToken,
+                                         eventApiService.&deleteEvent)
     }
 
 }

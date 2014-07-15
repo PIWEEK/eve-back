@@ -67,6 +67,25 @@ class EventApiService {
             return [code: 500, error: 'Could not create event'] as Left
         }
     }
+
+    Either updateEvent(Map data) {
+        Event event = eventService.updateEvent(data)
+
+        if (event) {
+            return (data + event.asMap() + [code: 200]) as Right
+        } else {
+            return [code: 500, error: "Could not update event ${data.id}".toString()] as Left
+        }
+    }
+
+    Either deleteEvent(Map data) {
+        Boolean result = eventService.deleteEvent(data)
+
+        if (result) {
+            return (data + [code: 204]) as Right
+        } else {
+            return [code: 500, error: "Could not delete event ${data.id}".toString()] as Left
+        }
     }
 
 }

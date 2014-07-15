@@ -45,7 +45,7 @@ class AuthService {
         //     return [code: 401, error: 'Invalid credentials'] as Left
         // }
 
-        [name: 'username', id: 1, code: 200] as Right
+        [name: data.name, id: 1, code: 200] as Right
     }
 
 }

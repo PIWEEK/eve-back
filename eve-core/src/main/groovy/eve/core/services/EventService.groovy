@@ -11,20 +11,44 @@ class EventService {
     // }
 
     Event createEvent(Map data) {
+        Event event
         data.with {
-            Event event = new Event(
+            event = new Event(
                 name: name,
                 startDate: startDate,
                 endDate: endDate,
-                owner: owner,
+                //owner: owner,
                 hashtag: hashtag,
                 logo: logo,
-                tags: tags
+                //tags: tags
             )
         }
         // return eventRepository.persist(event)
         // persist must return Event or null
         return event
+    }
+
+    Event updateEvent(Map data) {
+        Event event
+        data.with {
+            event = new Event(
+                id: id,
+                name: name,
+                startDate: startDate,
+                endDate: endDate,
+                //owner: owner,
+                hashtag: hashtag,
+                logo: logo,
+                //tags: tags
+            )
+        }
+        // return eventRepository.persist(event)
+        return event
+    }
+
+    Boolean deleteEvent(Map data) {
+        // return eventRepository.deleteById(data.id)
+        return true
     }
 
 }
