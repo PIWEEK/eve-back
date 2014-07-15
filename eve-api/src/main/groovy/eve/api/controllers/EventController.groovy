@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletResponse
 import static eve.api.either.Either.bind
 import eve.api.either.Left
 import eve.api.either.Right
+import eve.api.services.AuthService
 
 @RestController
 @RequestMapping('/event')
 class EventController extends BaseController {
 
-    @RequestMapping(value = '/', method = RequestMethod.GET)
+    @RequestMapping(value = '', method = RequestMethod.GET)
     def list(HttpServletResponse response) {
         return [description: 'EVENT LIST']
     }
