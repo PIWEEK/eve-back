@@ -1,4 +1,4 @@
-package eve
+package eve.core
 
 class Speaker {
     String name
