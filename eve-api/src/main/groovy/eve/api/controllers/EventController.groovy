@@ -31,4 +31,19 @@ class EventController extends BaseController {
         return [description: ("EVENT SHOW ${id}" as String)]
     }
 
+    @RequestMapping(value = '/{id}/complete', method = RequestMethod.GET)
+    def showComplete(@PathVariable Long id, HttpServletResponse response) {
+        return [description: ("=== complete event ${id}" as String)]
+    }
+
+    @RequestMapping(value = '/{id}/speaker', method = RequestMethod.GET)
+    def eventSpeakers(@PathVariable Long id, HttpServletResponse response) {
+        return [description: ("EVENT ${id} SPEAKERS" as String)]
+    }
+
+    @RequestMapping(value = '/{id}/talk', method = RequestMethod.GET)
+    def eventTalks(@PathVariable Long id, HttpServletResponse response) {
+        return [description: ("EVENT ${id} TALKS" as String)]
+    }
+
 }
