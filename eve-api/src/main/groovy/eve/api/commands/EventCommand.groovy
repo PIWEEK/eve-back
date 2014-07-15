@@ -26,20 +26,4 @@ class EventCommand {
         ]
     }
 
-    Either validate() {
-        List<String> errors = []
-        if (!name) { errors << 'Name cannot ve blank' }
-        if (!owner) { errors << 'Owner cannot ve blank' }
-        if (!hashtag) { errors << 'Hashtag cannot ve blank' }
-        if (!logo) { errors << 'Logo cannot ve blank' }
-        if (!startDate) { errors << 'StartDate cannot ve blank' }
-        if (!endDate) { errors << 'EndDate cannot ve blank' }
-
-        if (errors) {
-            return [code: 400, errors: errors] as Left
-        } else {
-            return ([code: 200] + this.asMap()) as Right
-        }
-    }
-
 }
