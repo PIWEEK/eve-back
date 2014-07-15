@@ -18,7 +18,7 @@ class Event {
             owner: owner,
             hashtag: hashtag,
             logo: logo,
-            tags: tags,
+            tags: tags.collect { it.asMap() },
         ]
     }
 

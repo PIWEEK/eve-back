@@ -13,4 +13,21 @@ class Talk {
     String roomName
     int maxAtendees
     int numAtendees
+
+    Map asMap() {
+        [
+            name: name,
+            startDate: startDate,
+            endDate: endDate,
+            event: event,
+            track: track,
+            description: description,
+            hashtag: hashtag,
+            speakers: speakers.collect { it.asMap() },
+            tags: tags.collect { it.asMap() },
+            roomName: roomName,
+            maxAtendees: maxAtendees,
+            numAtendees: numAtendees
+        ]
+    }
 }
