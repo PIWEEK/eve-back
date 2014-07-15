@@ -44,8 +44,11 @@ class AuthService {
         // } else {
         //     return [code: 401, error: 'Invalid credentials'] as Left
         // }
-
-        [name: data.name, id: 1, code: 200] as Right
+        if (data.name) {
+            return [name: data.name, id: 1, code: 200] as Right
+        } else {
+            return [code: 401, error: 'Invalid credentials'] as Left
+        }
     }
 
 }
