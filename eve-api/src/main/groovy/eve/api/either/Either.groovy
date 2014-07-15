@@ -15,7 +15,7 @@ abstract class Either extends LinkedHashMap {
             if (either.isLeft()) {
                 break
             } else {
-                either = method.call(either.data)
+                either = method.call(either.getData())
             }
         }
         return either
