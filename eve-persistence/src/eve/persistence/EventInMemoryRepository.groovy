@@ -4,22 +4,33 @@ import eve.Event
 
 class EventInMemoryRepository implements EventRepository {
 
-    static List<Event> events = []
+    static Set<Event> events = []
 
-    def get(Object obj) {
-        events.findById(obj.id)
+    Object get(Object name) {
+        events.find{ it.name == name }
+    }
 
+    List getAll() {
+        events as List
+    }
+
+    Object findByName(String name) {
+        events.find{ it.name == name }
+    }
+
+    List findAll(Map<String,Object> propertyValuePairs) {
+        throw new UnsupportedOperation()
+    }
+
+    Object find(Map<String,Object> propertyValuePairs) {
+        throw new UnsupportedOperation()
     }
 
     def put(Object obj) {
-        events << obj
+        events.add(obj)
     }
 
-    def remove(Object obj)  {
+    def remove(Object obj) {
         events.remove(obj)
-    }
-
-    def findByName(String name) {
-        events.findByName(obj.name)
     }
 }
