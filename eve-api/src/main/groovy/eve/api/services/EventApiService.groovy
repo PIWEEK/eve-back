@@ -58,4 +58,8 @@ class EventApiService {
         return [code: 200, events: eventListMap] as Right
     }
 
+    Either createEvent(Map data) {
+        Event event = eventService.createEvent(data)
+    }
+
 }
