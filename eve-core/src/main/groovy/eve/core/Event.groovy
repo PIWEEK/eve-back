@@ -2,6 +2,7 @@ package eve.core
 
 class Event {
 
+    Long id
     String name
     Date startDate
     Date endDate
@@ -12,6 +13,7 @@ class Event {
 
     Map asMap() {
         [
+            id: id,
             name: name,
             startDate: startDate,
             endDate: endDate,

@@ -2,10 +2,10 @@ package eve.core.services
 
 class EventService {
 
-    EventRepository eventRepository = new EventRepository()
+    // EventRepository eventRepository = new EventRepository()
 
-    List<Event> getEventList() {
-        //return eventRepository.list()
-    }
+    // List<Event> getEventList() {
+    //     //return eventRepository.list()
+    // }
 
 }

@@ -1,6 +1,8 @@
 package eve.core
 
 class Speaker {
+
+    Long id
     String name
     String twitter
     String bio
@@ -8,6 +10,7 @@ class Speaker {
 
     Map asMap() {
         [
+            id: id,
             name: name,
             twitter: twitter,
             bio: bio,

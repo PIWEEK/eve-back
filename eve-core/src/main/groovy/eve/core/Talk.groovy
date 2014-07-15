@@ -1,6 +1,8 @@
 package eve.core
 
 class Talk {
+
+    Long id
     String name
     Date startDate
     Date endDate
@@ -16,6 +18,7 @@ class Talk {
 
     Map asMap() {
         [
+            id: id,
             name: name,
             startDate: startDate,
             endDate: endDate,

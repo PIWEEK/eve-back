@@ -1,9 +1,14 @@
 package eve.core
 
 class Tag {
+
+    Long id
     String name
 
     Map asMap() {
-        [name: name]
+        [
+            id: id,
+            name: name
+        ]
     }
 }

@@ -5,6 +5,10 @@ import org.springframework.beans.factory.annotation.Value
 import eve.auth.StatelessAuth
 import eve.core.User
 
+import eve.api.either.Either
+import eve.api.either.Left
+import eve.api.either.Right
+
 @Service
 class AuthService {
 
