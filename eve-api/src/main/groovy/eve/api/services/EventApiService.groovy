@@ -60,6 +60,13 @@ class EventApiService {
 
     Either createEvent(Map data) {
         Event event = eventService.createEvent(data)
+
+        if (event) {
+            return (data + event.asMap() + [code: 200]) as Right
+        } else {
+            return [code: 500, error: 'Could not create event'] as Left
+        }
+    }
     }
 
 }

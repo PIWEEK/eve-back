@@ -7,6 +7,8 @@ import eve.api.either.Right
 
 abstract class BaseController {
 
+    final Right EMPTY = [:] as Right
+
     def renderWithResponse(HttpServletResponse response, Either either) {
         response.status = either.code
         return either.getData()

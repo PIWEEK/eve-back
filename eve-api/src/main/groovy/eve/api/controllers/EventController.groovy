@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse
 import static eve.api.either.Either.bind
 import eve.api.either.Left
 import eve.api.either.Right
+
 import eve.api.services.AuthService
 import eve.api.services.EventApiService
 
 @RestController
 @RequestMapping('/event')
 class EventController extends BaseController {
-
-    final Right EMPTY = [:] as Right
 
     @Autowired EventApiService eventApiService
 

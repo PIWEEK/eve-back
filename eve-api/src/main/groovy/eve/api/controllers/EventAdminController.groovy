@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpServletRequest
 
 import static eve.api.either.Either.bind
-
 import eve.api.either.Left
 import eve.api.either.Right
 
@@ -21,8 +20,6 @@ import eve.api.commands.EventCommand
 @RestController
 @RequestMapping('/admin/event')
 class EventAdminController extends BaseController {
-
-    final Right EMPTY = [:] as Right
 
     @Autowired EventApiService eventApiService
     @Autowired AuthService authService

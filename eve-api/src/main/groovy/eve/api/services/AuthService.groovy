@@ -36,4 +36,16 @@ class AuthService {
         return [token: token, code: 200] as Right
     }
 
+    Either authenticate(Map data) {
+        //User user = userRepository.findUserByName()
+        //String passwordEncoded = ...
+        // if (user.password == passwordEncoded) {
+        //     return [name: user.name, id: user.id, code: 200] as Right
+        // } else {
+        //     return [code: 401, error: 'Invalid credentials'] as Left
+        // }
+
+        [name: 'username', id: 1, code: 200] as Right
+    }
+
 }
