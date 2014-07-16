@@ -1,28 +1,23 @@
 package eve.persistence
 
-import eve.core.Event
-
-class InMemoryRepository<T> implements EventRepository {
+abstract class InMemoryRepository<T> implements EventRepository<T> {
 
     static Set<T> events = []
 
-    T get(Object name) {
+    T get(Object id) {
         events.find{ it.name == name }
     }
 
-    List getAll() {
+    List<T> getAll() {
         events as List
     }
 
-    Object findByName(String name) {
-        events.find{ it.name == name }
-    }
 
-    List findAll(Map<String,Object> propertyValuePairs) {
+    List<T> findAll(Map<String,Object> propertyValuePairs) {
         throw new UnsupportedOperation()
     }
 
-    Object find(Map<String,Object> propertyValuePairs) {
+    T find(Map<String,Object> propertyValuePairs) {
         throw new UnsupportedOperation()
     }
 
@@ -33,4 +28,5 @@ class InMemoryRepository<T> implements EventRepository {
     def remove(Object obj) {
         events.remove(obj)
     }
+
 }

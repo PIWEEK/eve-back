@@ -1,12 +1,9 @@
 package eve.persistence
 
-import eve.Event
+import eve.core.Event
 
-interface EventRepository implements Repository {
+interface EventRepository implements Repository<Event> {
 
-
-    List findByName(String name)
-
-
+    Event findByName(String name)
 
 }

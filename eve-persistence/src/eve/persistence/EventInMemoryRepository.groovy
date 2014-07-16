@@ -2,7 +2,10 @@ package eve.persistence
 
 import eve.core.Event
 
-class EventInMemoryRepository extends InMemoryRepository<Event> {
+class EventInMemoryRepository implements EventRepository
+    extends InMemoryRepository<Event> {
 
-    def findBySpecifProperty() {}
+    Event findByName(String name) {
+        events.find { it.name == name }
+    }
 }

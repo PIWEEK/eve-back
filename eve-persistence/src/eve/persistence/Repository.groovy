@@ -1,18 +1,18 @@
 package eve.persistence
 
-interface Repository {
+interface Repository<T> {
 
-    Object get(Object id)
+    T get(Object id)
 
-    List getAll()
+    List<T> getAll()
 
-    List findAll(Map<String,Object> propertyValuePairs)
+    List<T> findAll(Map<String,Object> propertyValuePairs)
 
-    Object find(Map<String,Object> propertyValuePairs)
+    T find(Map<String,Object> propertyValuePairs)
 
-    def put(Object obj)
+    def put(T obj)
 
-    def remove(Object obj)
+    def remove(T obj)
 
 
 }
