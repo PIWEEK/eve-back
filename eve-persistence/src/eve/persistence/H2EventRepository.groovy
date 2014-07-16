@@ -1,29 +1,36 @@
 package eve.persistence
 
+import groovy.sql.Sql
 import eve.core.Event
 
 class H2EventRepository implements EventRepository {
 
-    static Set<Map> events = []
+    Sql sql = Database.instance.sql
 
-    T get(Object id) {
-        events.find{ it.name == name }
+    Event get(Object id) {
+        def row = sql.firstRow "select * from events where id=:id", [id:id]
+        result[0] as Event
     }
 
-    List<T> getAll() {
-        events as List
+    List<Event> getAll() {
+        def res = []
+        sql.eachRow "select * from events" {
+            res << $it as Event
+        }
+        res
     }
 
-    List<T> findAll(Map<String,Object> propertyValuePairs) {
+    List<Event> findAll(Map<String,Object> propertyValuePairs) {
         throw new UnsupportedOperation()
     }
 
-    T find(Map<String,Object> propertyValuePairs) {
+    Event find(Map<String,Object> propertyValuePairs) {
         throw new UnsupportedOperation()
     }
 
     def put(Object obj) {
-        events.add(obj)
+        sql.execute """insert into events(id, name, startDate, endDate, hashtag, logo)
+            values (?,?,?,?,?,?) """, obj as Map
     }
 
     def remove(Object obj) {
