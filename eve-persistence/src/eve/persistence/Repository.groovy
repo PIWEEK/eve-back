@@ -14,5 +14,4 @@ interface Repository<T> {
 
     def remove(T obj)
 
-
 }

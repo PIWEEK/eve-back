@@ -1,6 +1,6 @@
 package eve.persistence
 
-abstract class InMemoryRepository<T> implements EventRepository<T> {
+abstract class InMemoryRepository<T> implements Repository<T> {
 
     static Set<T> events = []
 
