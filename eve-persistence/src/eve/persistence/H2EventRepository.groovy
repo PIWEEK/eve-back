@@ -7,33 +7,33 @@ class H2EventRepository implements EventRepository {
 
     Sql sql = Database.instance.sql
 
-    Event get(Object id) {
-        def row = sql.firstRow "select * from events where id=:id", [id:id]
+    Event get(Event id) {
+        def row = sql.firstRow "select * from event where id=:id", [id:id]
         result[0] as Event
     }
 
     List<Event> getAll() {
         def res = []
-        sql.eachRow "select * from events" {
+        sql.eachRow "select * from event" {
             res << $it as Event
         }
         res
     }
 
-    List<Event> findAll(Map<String,Object> propertyValuePairs) {
+    List<Event> findAll(Map<String,Event> propertyValuePairs) {
         throw new UnsupportedOperation()
     }
 
-    Event find(Map<String,Object> propertyValuePairs) {
+    Event find(Map<String,Event> propertyValuePairs) {
         throw new UnsupportedOperation()
     }
 
-    def put(Object obj) {
-        sql.execute """insert into events(id, name, startDate, endDate, hashtag, logo)
-            values (?,?,?,?,?,?) """, obj as Map
+    def put(Event obj) {
+        sql.execute("insert into event (name, startDate, endDate, hashtag, logo) values (?.name, ?.startDate, ?.endDate, ?.hashtag, ?.logo)",
+                    [name: obj.name, startDate: obj.startDate, endDate: obj.endDate, hashtag: obj.hashtag, logo: obj.logo])
     }
 
-    def remove(Object obj) {
+    def remove(Event obj) {
         events.remove(obj)
     }
 

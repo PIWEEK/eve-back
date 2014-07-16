@@ -1,14 +1,12 @@
 package eve.core.services
 
+import eve.persistence.H2EventRepository
+import eve.persistence.EventRepository
 import eve.core.Event
 
 class EventService {
 
-    // EventRepository eventRepository = new EventRepository()
-
-    // List<Event> getEventList() {
-    //     //return eventRepository.list()
-    // }
+    EventRepository eventRepository = new H2EventRepository()
 
     Event createEvent(Map data) {
         Event event
@@ -17,15 +15,15 @@ class EventService {
                 name: name,
                 startDate: startDate,
                 endDate: endDate,
-                //owner: owner,
                 hashtag: hashtag,
                 logo: logo,
-                //tags: tags
+                tags: tags,
+                tracks: tracks,
+                speakers: speakers
             )
         }
-        // return eventRepository.persist(event)
-        // persist must return Event or null
-        return event
+
+        return eventRepository.put(event)
     }
 
     Event updateEvent(Map data) {
