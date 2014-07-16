@@ -7,7 +7,7 @@ class Database {
     Sql sql
 
     private Database() {
-        this.sql = Sql.newInstance('jdbc:h2:devDb', 'sa', '')
+        this.sql = Sql.newInstance('jdbc:h2:./devDb', 'sa', '')
     }
 
     static Database getInstance() {

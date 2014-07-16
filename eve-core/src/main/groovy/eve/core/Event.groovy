@@ -20,9 +20,9 @@ class Event {
             endDate: endDate,
             hashtag: hashtag,
             logo: logo,
-            tags: tags.collect { it.asMap() },
-            tracks: tracks.collect { it.asMap() },
-            speakers: speakers.collect { it.asMap() }
+            // tags: tags.collect { it.asMap() },
+            // tracks: tracks.collect { it.asMap() },
+            // speakers: speakers.collect { it.asMap() }
         ]
     }
 

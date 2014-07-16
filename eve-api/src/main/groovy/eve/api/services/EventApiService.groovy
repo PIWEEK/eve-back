@@ -42,7 +42,7 @@ class EventApiService {
     }
 
     Either getEventById(Map data) {
-	def event = eventService.getEventById(data.id)
+        def event = eventService.getEventById(data.id)
 
         if (event) {
             return (data + event.asMap() + [code: 200]) as Right

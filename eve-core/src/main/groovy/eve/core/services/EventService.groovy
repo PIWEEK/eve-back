@@ -50,34 +50,11 @@ class EventService {
     }
 
     List<Event> getEventList() {
-	// return eventRepository.list()
-	return [
-            new Event(
-                name: 'Greach 2014',
-                      startDate: new Date() -1,
-                      endDate: new Date()
-            ),
-            new Event(
-                name: 'Codemotion',
-                      startDate: new Date() -1,
-                      endDate: new Date()
-            ),
-            new Event(
-                name: 'UX Spain',
-                      startDate: new Date() -1,
-                      endDate: new Date()
-            )
-        ]
+        return eventRepository.getAll()
     }
 
     Event getEventById(Long id) {
-        // return eventRepository.getEventById(id)
-        return new Event(
-	    id: id,
-            name: 'UX Spain',
-            startDate: new Date() -1,
-            endDate: new Date()
-        )
+        return eventRepository.get(id)
     }
 
 }

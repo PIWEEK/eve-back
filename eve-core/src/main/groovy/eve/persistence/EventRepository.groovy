@@ -2,7 +2,7 @@ package eve.persistence
 
 import eve.core.Event
 
-interface EventRepository implements Repository<Event> {
+interface EventRepository extends Repository<Event> {
 
     Event findByName(String name)
 
