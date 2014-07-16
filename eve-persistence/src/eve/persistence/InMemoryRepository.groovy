@@ -12,7 +12,6 @@ abstract class InMemoryRepository<T> implements EventRepository<T> {
         events as List
     }
 
-
     List<T> findAll(Map<String,Object> propertyValuePairs) {
         throw new UnsupportedOperation()
     }
