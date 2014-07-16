@@ -10,7 +10,7 @@ class Track {
         [
             id: id,
             name: name,
-            event: event
+            event_id: event.id
         ]
     }
 }
