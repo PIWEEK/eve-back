@@ -35,27 +35,20 @@ class EventApiService {
     }
 
     Either getEventList(Map data) {
-        // def eventList = eventService.getEventList()
-        def eventList = [
-            new Event(
-                name: 'Greach 2014',
-                      startDate: new Date() -1,
-                      endDate: new Date()
-            ),
-            new Event(
-                name: 'Codemotion',
-                      startDate: new Date() -1,
-                      endDate: new Date()
-            ),
-            new Event(
-                name: 'UX Spain',
-                      startDate: new Date() -1,
-                      endDate: new Date()
-            )
-        ]
+        def eventList = eventService.getEventList()
         def eventListMap = eventList.collect { it.asMap() }
 
         return [code: 200, events: eventListMap] as Right
+    }
+
+    Either getEventById(Map data) {
+	def event = eventService.getEventById(data.id)
+
+        if (event) {
+            return (data + event.asMap() + [code: 200]) as Right
+        } else {
+            return [code: 500, error: "Event ${data.id} could not be retreived".toString()] as Left
+        }
     }
 
     Either createEvent(Map data) {
