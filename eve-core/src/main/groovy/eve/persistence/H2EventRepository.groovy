@@ -2,29 +2,40 @@ package eve.persistence
 
 import groovy.sql.Sql
 import eve.core.Event
-import eve.core.Tag
 
 class H2EventRepository implements EventRepository {
 
     Sql sql = Database.instance.sql
-    TagRepository tagRepository = new H2TagRepository()
-
-    Boolean init() {
-        sql.execute('create table event(id bigint primary key auto_increment, name varchar, startDate timestamp, endDate timestamp, hashtag varchar, logo varchar)')
-    }
+    TrackRepository trackRepository = new H2TrackRepository()
+    SpeakerRepository speakerRepository = new H2SpeakerRepository()
+    TalkRepository talkRepository = new H2TalkRepository()
 
     Event get(Object id) {
         def row = sql.firstRow("select * from event where id=:id", [id: id])
 
-        return (row ? new Event([id: row.id, name: row.name, startDate: row.startDate, endDate: row.endDate, hashtag: row.hashtag, logo: row.logo]) : null)
+        return (row ? new Event([id: row.id, name: row.name, startDate: row.start_date, endDate: row.end_date, hashtag: row.hashtag, logo: row.logo]) : null)
     }
 
     List<Event> getAll() {
         def res = []
         sql.eachRow("select * from event") { row ->
-            res << new Event([id: row.id, name: row.name, startDate: row.startDate, endDate: row.endDate, hashtag: row.hashtag, logo: row.logo])
+            res << new Event([id: row.id, name: row.name, startDate: row.start_date, endDate: row.end_date, hashtag: row.hashtag, logo: row.logo, tags: row.tags, lastUpdate: row.last_update])
         }
         return res
+    }
+
+    List<Event> fillList(List<Event> events) {
+        return events.collect { Event event ->
+            return this.fillEvent(event)
+        }
+    }
+
+    Event fillEvent(Event event) {
+        event.tracks = trackRepository.findAllByEventId(event.id)
+        event.speakers = speakerRepository.findAllByEventId(event.id)
+        event.talks = talkRepository.findAllByEventId(event.id)
+
+        return event        
     }
 
     List<Event> findAll(Map<String,Object> propertyValuePairs) {
@@ -36,8 +47,8 @@ class H2EventRepository implements EventRepository {
     }
 
     def put(Event obj) {
-        def eventId = sql.executeInsert("insert into event (name, startDate, endDate, hashtag, logo) values (?.name, ?.startDate, ?.endDate, ?.hashtag, ?.logo)",
-                                        [name: obj.name, startDate: obj.startDate, endDate: obj.endDate, hashtag: obj.hashtag, logo: obj.logo])
+        def eventId = sql.executeInsert("insert into event (name, start_date, end_date, hashtag, logo) values (?.name, ?.startDate, ?.endDate, ?.hashtag, ?.logo)",
+                                        [name: obj.name, startDate: obj.start_date, endDate: obj.end_date, hashtag: obj.hashtag, logo: obj.logo])
 
         if (eventId) { obj.id = eventId?.flatten()?.first() }
 
@@ -48,8 +59,8 @@ class H2EventRepository implements EventRepository {
         def row = sql.firstRow("select * from event where id=:id", [id: obj.id])
 
         if (row) {
-            Boolean result = sql.executeUpdate("update event set name=?.name, startDate=?.startDate, endDate=?.endDate, hashtag=?.hashtag, logo=?.logo where id=?.id",
-                                               [id: obj.id, name: obj.name, startDate: obj.startDate, endDate: obj.endDate, hashtag: obj.hashtag, logo: obj.logo])
+            Boolean result = sql.executeUpdate("update event set name=?.name, start_date=?.startDate, end_date=?.endDate, hashtag=?.hashtag, logo=?.logo where id=?.id",
+                                               [id: obj.id, name: obj.name, startDate: obj.start_date, endDate: obj.end_date, hashtag: obj.hashtag, logo: obj.logo])
             return result ? obj : null
         } else {
             return null

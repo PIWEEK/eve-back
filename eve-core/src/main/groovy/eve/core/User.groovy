@@ -9,8 +9,7 @@ class User {
     Map asMap() {
         [
             id: id,
-            username: username,
-            password: password
+            username: username
         ]
     }
 }

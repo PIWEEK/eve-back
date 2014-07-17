@@ -3,7 +3,8 @@ package eve.core
 class Speaker {
 
     Long id
-    Event event
+    Long talk_id
+    Long event_id
     String name
     String twitter
     String bio
@@ -12,7 +13,8 @@ class Speaker {
     Map asMap() {
         [
             id: id,
-            event_id: event.id,
+            talk_id: talk_id,
+            event_id: event_id,
             name: name,
             twitter: twitter,
             bio: bio,

@@ -6,11 +6,15 @@ class Event {
     String name
     Date startDate
     Date endDate
+    String description
     String hashtag
     String logo
-    List<Tag> tags
+    String tags
+    Date lastUpdate
+
     List<Track> tracks
-    List<Speaker> speakers
+    List<Track> speakers
+    List<Track> talks
 
     Map asMap() {
         [
@@ -20,9 +24,11 @@ class Event {
             endDate: endDate,
             hashtag: hashtag,
             logo: logo,
-            // tags: tags.collect { it.asMap() },
-            // tracks: tracks.collect { it.asMap() },
-            // speakers: speakers.collect { it.asMap() }
+            tags: tags,
+            lastUpdate: lastUpdate,
+            tracks: tracks.collect { it.asMap() },
+            speakers: speakers.collect { it.asMap() },
+            talks: talks.collect { it.asMap() }
         ]
     }
 

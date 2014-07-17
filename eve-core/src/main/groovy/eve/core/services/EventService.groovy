@@ -24,8 +24,18 @@ class EventService {
         return eventRepository.getAll()
     }
 
+    List<Event> getCompleteEventList() {
+        List<Event> events = this.getEventList()
+        return eventRepository.fillList(events)
+    }
+
     Event getEventById(Long id) {
         return eventRepository.get(id)
+    }
+
+    Event getCompleteEventById(Long id) {
+        Event event = this.getEventById(id)
+        return eventRepository.fillEvent(event)
     }
 
 }

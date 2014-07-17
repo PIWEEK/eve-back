@@ -41,8 +41,25 @@ class EventApiService {
         return [code: 200, events: eventListMap] as Right
     }
 
+    Either getCompleteEventList(Map data) {
+        def eventList = eventService.getEventList()
+        def eventListMap = eventList.collect { it.asMap() }
+
+        return [code: 200, events: eventListMap] as Right
+    }
+
     Either getEventById(Map data) {
         def event = eventService.getEventById(data.id)
+
+        if (event) {
+            return (data + [event: event.asMap()] + [code: 200]) as Right
+        } else {
+            return [code: 500, error: "Event ${data.id} could not be retreived".toString()] as Left
+        }
+    }
+
+    Either getCompleteEventById(Map data) {
+        def event = eventService.getCompleteEventById(data.id)
 
         if (event) {
             return (data + [event: event.asMap()] + [code: 200]) as Right

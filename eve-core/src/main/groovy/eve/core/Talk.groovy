@@ -3,32 +3,30 @@ package eve.core
 class Talk {
 
     Long id
-    Event event
+    Long event_id
+    Long track_id
     String name
     Date startDate
-    Date endDate
-    Track track
+    Integer minutes
     String description
-    String hashtag
-    List<Speaker> speakers
-    List<Tag> tags
     String roomName
     int maxAtendees
+    String tags
+    String hashtag
 
     Map asMap() {
         [
             id: id,
-            event_id: event.id,
+            event_id: event_id,
+            track_id: track_id,
             name: name,
             startDate: startDate,
-            endDate: endDate,
-            track_id: track.id,
+            minutes: minutes,
             description: description,
-            hashtag: hashtag,
-            speakers: speakers.collect { it.id },
-            tags: tags.collect { it.asMap() },
             roomName: roomName,
-            maxAtendees: maxAtendees
+            maxAtendees: maxAtendees,
+            tags: tags,
+            hashtag: hashtag
         ]
     }
 }

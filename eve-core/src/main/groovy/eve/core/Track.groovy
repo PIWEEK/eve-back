@@ -4,13 +4,13 @@ class Track {
 
     Long id
     String name
-    Event event
+    Long event_id
 
     Map asMap() {
         [
             id: id,
             name: name,
-            event_id: event.id
+            event_id: event_id
         ]
     }
 }
