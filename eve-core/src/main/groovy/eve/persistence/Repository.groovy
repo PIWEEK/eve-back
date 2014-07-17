@@ -12,6 +12,8 @@ interface Repository<T> {
 
     def put(T obj)
 
+    def update(T obj)
+
     def remove(T obj)
 
 }

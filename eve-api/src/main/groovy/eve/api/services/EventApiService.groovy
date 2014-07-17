@@ -52,7 +52,8 @@ class EventApiService {
     }
 
     Either createEvent(Map data) {
-        Event event = eventService.createEvent(data)
+        Event event = createEventFromMap(data)
+        event = eventService.createEvent(event)
 
         if (event) {
             return (data + [event: event.asMap()] + [code: 200]) as Right
@@ -62,7 +63,8 @@ class EventApiService {
     }
 
     Either updateEvent(Map data) {
-        Event event = eventService.updateEvent(data)
+        Event event = createEventFromMap(data)
+        event = eventService.updateEvent(event)
 
         if (event) {
             return (data + event.asMap() + [code: 200]) as Right
@@ -72,20 +74,7 @@ class EventApiService {
     }
 
     Either deleteEvent(Map data) {
-        Event event
-        data.with {
-            event = new Event(
-                id: id,
-                name: name,
-                startDate: startDate,
-                endDate: endDate,
-                hashtag: hashtag,
-                logo: logo,
-                tags: tags,
-                tracks: tracks,
-                speakers: speakers
-            )
-        }
+        Event event = createEventFromMap(data)
 
         Boolean result = eventService.deleteEvent(event)
 
@@ -94,6 +83,20 @@ class EventApiService {
         } else {
             return [code: 500, error: "Could not delete event ${data.id}".toString()] as Left
         }
+    }
+
+    private Event createEventFromMap(Map data) {
+        return new Event(
+            id: data.id,
+            name: data.name,
+            startDate: data.startDate,
+            endDate: data.endDate,
+            hashtag: data.hashtag,
+            logo: data.logo,
+            tags: data.tags,
+            tracks: data.tracks,
+            speakers: data.speakers
+        )
     }
 
 }

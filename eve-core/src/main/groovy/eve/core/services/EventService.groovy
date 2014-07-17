@@ -8,40 +8,12 @@ class EventService {
 
     EventRepository eventRepository = new H2EventRepository()
 
-    Event createEvent(Map data) {
-        Event event
-        data.with {
-            event = new Event(
-                name: name,
-                startDate: startDate,
-                endDate: endDate,
-                hashtag: hashtag,
-                logo: logo,
-                tags: tags,
-                tracks: tracks,
-                speakers: speakers
-            )
-        }
-
+    Event createEvent(Event event) {
         return eventRepository.put(event)
     }
 
-    Event updateEvent(Map data) {
-        Event event
-        data.with {
-            event = new Event(
-                id: id,
-                name: name,
-                startDate: startDate,
-                endDate: endDate,
-                //owner: owner,
-                hashtag: hashtag,
-                logo: logo,
-                //tags: tags
-            )
-        }
-        // return eventRepository.persist(event)
-        return event
+    Event updateEvent(Event event) {
+        return eventRepository.update(event) ?: null
     }
 
     Boolean deleteEvent(Event event) {

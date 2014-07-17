@@ -12,7 +12,7 @@ class H2EventRepository implements EventRepository {
     }
 
     Event get(Object id) {
-        def row = sql.firstRow("select * from event where id=:id", [id:id])
+        def row = sql.firstRow("select * from event where id=:id", [id: id])
 
         return (row ? new Event([id: row.id, name: row.name, startDate: row.startDate, endDate: row.endDate, hashtag: row.hashtag, logo: row.logo]) : null)
     }
@@ -42,10 +42,21 @@ class H2EventRepository implements EventRepository {
         return eventId ? obj : null
     }
 
+    def update(Event obj) {
+        def row = sql.firstRow("select * from event where id=:id", [id: obj.id])
+
+        if (row) {
+            Boolean result = sql.executeUpdate("update event set name=?.name, startDate=?.startDate, endDate=?.endDate, hashtag=?.hashtag, logo=?.logo where id=?.id",
+                                               [id: obj.id, name: obj.name, startDate: obj.startDate, endDate: obj.endDate, hashtag: obj.hashtag, logo: obj.logo])
+            return result ? obj : null
+        } else {
+            return null
+        }
+    }
+
     def remove(Event obj) {
         return sql.execute("delete from event where id=?.id", [id: obj.id])
     }
-
 
     Event findByName(String name) {
         events.find { it.name == name }
