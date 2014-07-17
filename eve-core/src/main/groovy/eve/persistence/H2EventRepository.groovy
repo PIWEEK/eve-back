@@ -13,13 +13,13 @@ class H2EventRepository implements EventRepository {
     Event get(Object id) {
         def row = sql.firstRow("select * from event where id=:id", [id: id])
 
-        return (row ? new Event([id: row.id, name: row.name, startDate: row.start_date, endDate: row.end_date, hashtag: row.hashtag, logo: row.logo, tags: row.tags, lastUpdate: row.last_update, location: row.location]) : null)
+        return (row ? new Event([id: row.id, name: row.name, startDate: row.start_date, endDate: row.end_date, description: row.description, hashtag: row.hashtag, logo: row.logo, tags: row.tags, lastUpdate: row.last_update, location: row.location]) : null)
     }
 
     List<Event> getAll() {
         def res = []
         sql.eachRow("select * from event") { row ->
-            res << new Event([id: row.id, name: row.name, startDate: row.start_date, endDate: row.end_date, hashtag: row.hashtag, logo: row.logo, tags: row.tags, lastUpdate: row.last_update, location: row.location])
+            res << new Event([id: row.id, name: row.name, startDate: row.start_date, endDate: row.end_date, description: row.description, hashtag: row.hashtag, logo: row.logo, tags: row.tags, lastUpdate: row.last_update, location: row.location])
         }
         return res
     }
