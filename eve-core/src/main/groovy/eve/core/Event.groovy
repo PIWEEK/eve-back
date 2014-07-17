@@ -24,6 +24,7 @@ class Event {
             name: name,
             startDate: formatDate(startDate),
             endDate: formatDate(endDate),
+            description: description,
             hashtag: hashtag,
             logo: logo,
             tags: tags,
