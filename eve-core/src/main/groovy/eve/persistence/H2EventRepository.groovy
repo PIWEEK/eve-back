@@ -18,7 +18,7 @@ class H2EventRepository implements EventRepository {
 
     List<Event> getAll() {
         def res = []
-        sql.eachRow("select * from event") { row ->
+        sql.eachRow("select * from event order by start_date DESC") { row ->
             res << new Event([id: row.id, name: row.name, startDate: row.start_date, endDate: row.end_date, description: row.description, hashtag: row.hashtag, logo: row.logo, tags: row.tags, lastUpdate: row.last_update, location: row.location])
         }
         return res
