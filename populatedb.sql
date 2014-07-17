@@ -5,7 +5,7 @@
 create table user(id bigint primary key auto_increment, username varchar, password varchar);
 
 -- events
-create table event(id bigint primary key auto_increment, name varchar, start_date timestamp, end_date timestamp, description varchar, hashtag varchar, logo varchar, tags varchar, last_update timestamp);
+create table event(id bigint primary key auto_increment, name varchar, start_date timestamp, end_date timestamp, description varchar, hashtag varchar, logo varchar, tags varchar, last_update timestamp, location varchar);
 
 -- tracks
 create table track(id bigint primary key auto_increment, name varchar, event_id bigint, foreign key (event_id) references event(id));
@@ -17,8 +17,8 @@ create table talk(id bigint primary key auto_increment, event_id bigint, foreign
 create table speaker(id bigint primary key auto_increment, talk_id bigint, foreign key (talk_id) references talk(id), event_id bigint, foreign key (event_id) references event(id), name varchar, twitter varchar, bio varchar, photo varchar);
 
 -- TEST DATASET
-insert into event (name, start_date, end_date, description, hashtag, logo, tags, last_update) values ('Greach 2014', '2014-01-01', '2014-01-03', 'Conferencia de Greach awesómica', '#greach2014', 'http://myUrl', 'groovy, grails', '2014-01-01');
-insert into event (name, start_date, end_date, description, hashtag, logo, tags, last_update) values ('Greach 2015', '2015-01-01', '2015-01-03', 'Conferencia de Greach awesómica', '#greach2015', 'http://myUrl', 'groovy, gradle', '2015-01-01');
+insert into event (name, start_date, end_date, description, hashtag, logo, tags, last_update, location) values ('Greach 2014', '2014-01-01', '2014-01-03', 'Conferencia de Greach awesómica', '#greach2014', 'http://myUrl', 'groovy, grails', '2014-01-01', 'http://location.png');
+insert into event (name, start_date, end_date, description, hashtag, logo, tags, last_update, location) values ('Greach 2015', '2015-01-01', '2015-01-03', 'Conferencia de Greach awesómica', '#greach2015', 'http://myUrl', 'groovy, gradle', '2015-01-01', 'http://location.png');
 
 insert into track (name, event_id) values ('Groovy Track', 1);
 insert into track (name, event_id) values ('Grails Track', 1);

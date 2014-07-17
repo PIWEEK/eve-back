@@ -13,6 +13,7 @@ class Event {
     String logo
     String tags
     Date lastUpdate
+    String location
 
     List<Track> tracks
     List<Track> speakers
@@ -29,6 +30,7 @@ class Event {
             logo: logo,
             tags: tags,
             lastUpdate: formatDate(lastUpdate),
+            location: location,
             tracks: tracks.collect { it.asMap() },
             speakers: speakers.collect { it.asMap() },
             talks: talks.collect { it.asMap() }
