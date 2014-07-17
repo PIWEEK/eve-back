@@ -42,7 +42,7 @@ class EventApiService {
     }
 
     Either getCompleteEventList(Map data) {
-        def eventList = eventService.getEventList()
+        def eventList = eventService.getCompleteEventList()
         def eventListMap = eventList.collect { it.asMap() }
 
         return [code: 200, events: eventListMap] as Right

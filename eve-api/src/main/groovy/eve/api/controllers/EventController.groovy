@@ -50,4 +50,9 @@ class EventController extends BaseController {
         return [description: ("EVENT ${id} TALKS" as String)]
     }
 
+    @RequestMapping(value = '/dump', method = RequestMethod.GET)
+    def listComplete(HttpServletResponse response) {
+        renderWithResponse response, bind(EMPTY, eventApiService.&getCompleteEventList)
+    }
+
 }
