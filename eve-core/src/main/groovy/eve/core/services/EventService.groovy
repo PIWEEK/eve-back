@@ -44,9 +44,8 @@ class EventService {
         return event
     }
 
-    Boolean deleteEvent(Map data) {
-        // return eventRepository.deleteById(data.id)
-        return true
+    Boolean deleteEvent(Event event) {
+        return eventRepository.remove(event)
     }
 
     List<Event> getEventList() {

@@ -43,7 +43,7 @@ class H2EventRepository implements EventRepository {
     }
 
     def remove(Event obj) {
-        events.remove(obj)
+        return sql.execute("delete from event where id=?.id", [id: obj.id])
     }
 
 

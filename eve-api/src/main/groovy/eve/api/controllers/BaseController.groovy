@@ -11,7 +11,14 @@ abstract class BaseController {
 
     def renderWithResponse(HttpServletResponse response, Either either) {
         response.status = either.code
-        return either.getData()
+
+        Map data = either.getData()
+        List<String> include = data.include
+        if (include) {
+            data = data.findAll { k, v -> include.contains(k) }
+        }
+
+        return data
     }
 
     Either getTokenRightFromHeader(HttpServletRequest request) {

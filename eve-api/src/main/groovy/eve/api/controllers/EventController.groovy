@@ -27,7 +27,7 @@ class EventController extends BaseController {
 
     @RequestMapping(value = '/{id}', method = RequestMethod.GET)
     def show(@PathVariable Long id, HttpServletResponse response) {
-        def right = [id: id] as Right
+        def right = [id: id, include: ['event']] as Right
 
         renderWithResponse response, bind(right, eventApiService.&getEventById)
     }

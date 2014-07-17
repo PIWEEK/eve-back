@@ -23,7 +23,7 @@ class AuthController extends BaseController {
     @Autowired AuthService authService
 
     @RequestMapping(value = '', method = RequestMethod.POST)
-    def list(@RequestBody AuthCommand cmd, HttpServletResponse response) {
+    def login(@RequestBody AuthCommand cmd, HttpServletResponse response) {
         Right right = cmd.asMap()
 
         renderWithResponse response, bind(right,

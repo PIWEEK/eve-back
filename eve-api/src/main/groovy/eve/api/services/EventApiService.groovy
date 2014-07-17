@@ -45,7 +45,7 @@ class EventApiService {
         def event = eventService.getEventById(data.id)
 
         if (event) {
-            return (data + event.asMap() + [code: 200]) as Right
+            return (data + [event: event.asMap()] + [code: 200]) as Right
         } else {
             return [code: 500, error: "Event ${data.id} could not be retreived".toString()] as Left
         }
@@ -55,7 +55,7 @@ class EventApiService {
         Event event = eventService.createEvent(data)
 
         if (event) {
-            return (data + event.asMap() + [code: 200]) as Right
+            return (data + [event: event.asMap()] + [code: 200]) as Right
         } else {
             return [code: 500, error: 'Could not create event'] as Left
         }
@@ -72,7 +72,22 @@ class EventApiService {
     }
 
     Either deleteEvent(Map data) {
-        Boolean result = eventService.deleteEvent(data)
+        Event event
+        data.with {
+            event = new Event(
+                id: id,
+                name: name,
+                startDate: startDate,
+                endDate: endDate,
+                hashtag: hashtag,
+                logo: logo,
+                tags: tags,
+                tracks: tracks,
+                speakers: speakers
+            )
+        }
+
+        Boolean result = eventService.deleteEvent(event)
 
         if (result) {
             return (data + [code: 204]) as Right

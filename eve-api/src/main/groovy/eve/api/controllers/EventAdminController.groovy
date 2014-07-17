@@ -26,7 +26,7 @@ class EventAdminController extends BaseController {
 
     @RequestMapping(value = '', method = RequestMethod.POST)
     def create(@RequestBody EventCommand cmd, HttpServletRequest request, HttpServletResponse response) {
-        Right right = this.getTokenRightFromHeader(request) + cmd.asMap()
+        Right right = this.getTokenRightFromHeader(request) + cmd.asMap() + [include: ['event']]
 
         renderWithResponse response, bind(right,
                                           authService.&validateToken,
