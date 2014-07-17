@@ -2,10 +2,12 @@ package eve.persistence
 
 import groovy.sql.Sql
 import eve.core.Event
+import eve.core.Tag
 
 class H2EventRepository implements EventRepository {
 
     Sql sql = Database.instance.sql
+    TagRepository tagRepository = new H2TagRepository()
 
     Boolean init() {
         sql.execute('create table event(id bigint primary key auto_increment, name varchar, startDate timestamp, endDate timestamp, hashtag varchar, logo varchar)')
