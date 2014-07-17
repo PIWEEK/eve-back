@@ -3,13 +3,13 @@ package eve.core
 class User {
 
     Long id
-    String name
+    String username
     String password
 
     Map asMap() {
         [
             id: id,
-            name: name,
+            username: username,
             password: password
         ]
     }

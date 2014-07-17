@@ -34,11 +34,6 @@ class H2EventRepository implements EventRepository {
     }
 
     def put(Event obj) {
-
-        [name: obj.name, startDate: obj.startDate, endDate: obj.endDate, hashtag: obj.hashtag, logo: obj.logo].each { k, v ->
-            println "${k} => ${v}"
-        }
-
         def eventId = sql.executeInsert("insert into event (name, startDate, endDate, hashtag, logo) values (?.name, ?.startDate, ?.endDate, ?.hashtag, ?.logo)",
                                         [name: obj.name, startDate: obj.startDate, endDate: obj.endDate, hashtag: obj.hashtag, logo: obj.logo])
 

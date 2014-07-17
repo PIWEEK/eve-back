@@ -30,7 +30,7 @@ class AuthService {
     }
 
     Either createToken(Map data) {
-        Map tokenData = [name: data.name, id: data.id]
+        Map tokenData = [username: data.username, id: data.id]
         String token = this.statelessAuth.generateToken(tokenData)
 
         return [token: token, code: 200] as Right
@@ -40,12 +40,12 @@ class AuthService {
         //User user = userRepository.findUserByName()
         //String passwordEncoded = ...
         // if (user.password == passwordEncoded) {
-        //     return [name: user.name, id: user.id, code: 200] as Right
+        //     return [username: user.username, id: user.id, code: 200] as Right
         // } else {
         //     return [code: 401, error: 'Invalid credentials'] as Left
         // }
-        if (data.name) {
-            return [name: data.name, id: 1, code: 200] as Right
+        if (data.username) {
+            return [username: data.username, id: 1, code: 200] as Right
         } else {
             return [code: 401, error: 'Invalid credentials'] as Left
         }

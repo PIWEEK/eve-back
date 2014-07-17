@@ -6,12 +6,12 @@ import eve.api.either.Right
 
 class AuthCommand {
 
-    String name
+    String username
     String password
 
     Map asMap() {
         [
-            name: name,
+            username: username,
             password: password
         ]
     }
