@@ -1,5 +1,7 @@
 package eve.core
 
+import static eve.core.util.DateUtils.formatDate
+
 class Talk {
 
     Long id
@@ -20,7 +22,7 @@ class Talk {
             event_id: event_id,
             track_id: track_id,
             name: name,
-            startDate: startDate,
+            startDate: formatDate(startDate),
             minutes: minutes,
             description: description,
             roomName: roomName,

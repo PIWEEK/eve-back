@@ -1,5 +1,7 @@
 package eve.core
 
+import static eve.core.util.DateUtils.formatDate
+
 class Event {
 
     Long id
@@ -20,12 +22,12 @@ class Event {
         [
             id: id,
             name: name,
-            startDate: startDate,
-            endDate: endDate,
+            startDate: formatDate(startDate),
+            endDate: formatDate(endDate),
             hashtag: hashtag,
             logo: logo,
             tags: tags,
-            lastUpdate: lastUpdate,
+            lastUpdate: formatDate(lastUpdate),
             tracks: tracks.collect { it.asMap() },
             speakers: speakers.collect { it.asMap() },
             talks: talks.collect { it.asMap() }
