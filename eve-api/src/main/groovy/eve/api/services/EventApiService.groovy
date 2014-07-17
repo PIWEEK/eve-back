@@ -19,12 +19,13 @@ class EventApiService {
         List<String> errors = []
 
         data.with {
-            if (!name) { errors << 'Name cannot ve blank' }
-            if (!owner) { errors << 'Owner cannot ve blank' }
-            if (!hashtag) { errors << 'Hashtag cannot ve blank' }
-            if (!logo) { errors << 'Logo cannot ve blank' }
-            if (!startDate) { errors << 'StartDate cannot ve blank' }
-            if (!endDate) { errors << 'EndDate cannot ve blank' }
+            if (!name) { errors << 'Name cannot be blank' }
+            if (!startDate) { errors << 'StartDate cannot be blank' }
+            if (!endDate) { errors << 'EndDate cannot be blank' }
+            if (!description) { errors << 'Description cannot be blank' }
+            if (!hashtag) { errors << 'Hashtag cannot be blank' }
+            if (!logo) { errors << 'Logo cannot be blank' }
+            if (!tags) { errors << 'Tags cannot be blank' }
         }
 
         if (errors) {
