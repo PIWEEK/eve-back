@@ -8,6 +8,8 @@ class Speaker {
     String name
     String twitter
     String bio
+    String position
+    String tags
     String photo
 
     Map asMap() {
@@ -18,6 +20,8 @@ class Speaker {
             name: name,
             twitter: twitter,
             bio: bio,
+            position: position,
+            tags: tags,
             photo: photo
         ]
     }

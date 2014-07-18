@@ -14,7 +14,7 @@ create table track(id bigint primary key auto_increment, name varchar, event_id 
 create table talk(id bigint primary key auto_increment, event_id bigint, foreign key (event_id) references event(id), track_id bigint, foreign key (track_id) references track(id), name varchar, start_date timestamp, minutes int, description varchar, room_name varchar, max_atendees int, tags varchar, hashtag varchar);
 
 -- speakers
-create table speaker(id bigint primary key auto_increment, talk_id bigint, foreign key (talk_id) references talk(id), event_id bigint, foreign key (event_id) references event(id), name varchar, twitter varchar, bio varchar, photo varchar);
+create table speaker(id bigint primary key auto_increment, talk_id bigint, foreign key (talk_id) references talk(id), event_id bigint, foreign key (event_id) references event(id), name varchar, twitter varchar, bio varchar, position varchar, tags varchar, photo varchar);
 
 -- TEST DATASET
 insert into event (name, start_date, end_date, description, hashtag, logo, tags, last_update, location) values ('Greach 2014', '2014-01-01', '2014-01-03', 'Conferencia de Greach awesómica', '#greach2014', 'http://myUrl', 'groovy, grails', '2014-01-01', 'http://location.png');

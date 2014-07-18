@@ -24,7 +24,7 @@ class H2SpeakerRepository implements SpeakerRepository {
     List<Speaker> findAllByEventId(Long id) {
         def res = []
         sql.eachRow("select * from speaker where event_id=?.id", [id: id]) { row ->
-            res << new Speaker(id: row.id, talk_id: row.talk_id, event_id: row.event_id, name: row.name, twitter: row.twitter, bio: row.bio, photo: row.photo)
+            res << new Speaker(id: row.id, talk_id: row.talk_id, event_id: row.event_id, name: row.name, twitter: row.twitter, bio: row.bio, position: row.position, tags: row.tags, photo: row.photo)
         }
         return res
     }
