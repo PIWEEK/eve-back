@@ -20,12 +20,14 @@ class EventApiService {
 
         data.with {
             if (!name) { errors << 'Name cannot be blank' }
-            if (!startDate) { errors << 'StartDate cannot be blank' }
-            if (!endDate) { errors << 'EndDate cannot be blank' }
+            if (!startDate) { errors << 'Start date cannot be blank' }
+            if (!endDate) { errors << 'End date cannot be blank' }
             if (!description) { errors << 'Description cannot be blank' }
             if (!hashtag) { errors << 'Hashtag cannot be blank' }
             if (!logo) { errors << 'Logo cannot be blank' }
             if (!tags) { errors << 'Tags cannot be blank' }
+            if (!location) { errors << 'Location cannot be blank' }
+            if (!location_description) { errors << 'Location description cannot be blank' }
         }
 
         if (errors) {

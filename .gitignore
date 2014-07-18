@@ -3,3 +3,4 @@
 **/build/*
 *.swp
 devDb.h2.db
+eve-api/devDb.trace.db

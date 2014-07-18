@@ -5,7 +5,7 @@
 create table user(id bigint primary key auto_increment, username varchar, password varchar);
 
 -- events
-create table event(id bigint primary key auto_increment, name varchar, start_date timestamp, end_date timestamp, description varchar, hashtag varchar, logo varchar, tags varchar, last_update timestamp, location varchar);
+create table event(id bigint primary key auto_increment, name varchar, start_date timestamp, end_date timestamp, description varchar, hashtag varchar, logo varchar, tags varchar, last_update timestamp, location varchar, location_description varchar);
 
 -- tracks
 create table track(id bigint primary key auto_increment, name varchar, event_id bigint, foreign key (event_id) references event(id));

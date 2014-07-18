@@ -9,20 +9,27 @@ class EventCommand {
     String name
     Date startDate
     Date endDate
-    String owner
+    String description
     String hashtag
     String logo
-    List tags
+    String tags
+    Date lastUpdate
+    String location
+    String location_description
+
 
     Map asMap() {
         [
             name: name,
-            startDate: startDate,
-            endDate: endDate,
-            owner: owner,
+            startDate: formatDate(startDate),
+            endDate: formatDate(endDate),
+            description: description,
             hashtag: hashtag,
             logo: logo,
-            tags: tags
+            tags: tags,
+            lastUpdate: formatDate(lastUpdate),
+            location: location,
+            location_description: location_description,
         ]
     }
 
